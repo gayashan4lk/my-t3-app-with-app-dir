@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { env } from "process";
 
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
@@ -14,6 +15,7 @@ export default async function Home() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
         </h1>
+        <h1 className="text-5xl">Environment: {env.NEXT_PUBLIC_TEST}</h1>
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white">
             {hello ? hello.greeting : "Loading tRPC query..."}
