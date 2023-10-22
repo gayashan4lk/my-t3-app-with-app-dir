@@ -15,6 +15,12 @@ export const postRouter = createTRPCRouter({
       };
     }),
 
+  get: publicProcedure.query(({ ctx }) => {
+    return ctx.db.post.findFirst({
+      orderBy: { createdAt: "desc" },
+    });
+  }),
+
   create: protectedProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {

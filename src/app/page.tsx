@@ -7,6 +7,7 @@ import { api } from "~/trpc/server";
 
 export default async function Home() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
+  const publicPost = await api.post.get.query();
   const session = await getServerAuthSession();
 
   return (
@@ -16,6 +17,7 @@ export default async function Home() {
           Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
         </h1>
         <h1 className="text-5xl">Environment: {env.NEXT_PUBLIC_TEST}</h1>
+        <h1 className="text-5xl">My publics post: {publicPost?.name}</h1>
         <div className="flex flex-col items-center gap-2">
           <p className="text-2xl text-white">
             {hello ? hello.greeting : "Loading tRPC query..."}
